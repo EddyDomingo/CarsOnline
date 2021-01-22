@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <!--Required Meta Tag-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <style>
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 150px;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            }
+
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+            }
+            
+        .sidebar a.active {
+            background-color: #2698EC;
+            color: white;
+            }
+
+        .sidebar a:hover:not(.active) {
+            background-color: #2698EC;
+            color: white;
+            }
+
+        div.content {
+        margin-left: 200px;
+        padding: 1px 16px;
+        height: 1000px;
+        }
+
+        @media screen and (max-width: 700px) {
+        .sidebar {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+
+        .sidebar a {float: left;}
+        div.content {margin-left: 0;}
+        }
+
+        @media screen and (max-width: 400px) {
+        .sidebar a {
+            text-align: center;
+            float: none;
+         }
+        }
+
+        #CenterMove {
+        position: absolute;
+        right: 150px;  
+        width: 200px;
+        height: 120px;
+        border: none;
+        }
+    
+        div.gallery {
+        margin: 10px;
+        border: 1px solid #ccc;
+        float: right;
+        width: 180px;
+        
+        }
+
+        div.gallery:hover {
+        border: 1px solid #777;
+        }
+
+        div.gallery img {
+        width: 100%;
+        height: auto;
+        }
+
+        div.desc {
+        padding: 15px;
+        text-align: center;
+        }
+
+        #shift{
+           float: right;
+           
+        }
+
+        .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 50x; /* Location of the box */
+       
+        left: 0;
+        top: 0;
+        width: 50%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        }
+
+        /* The Close Button */
+        .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+        }
+    </style>
+
+    <title>NextGen-Cars Buy</title>
+    </head>
+    <body>
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    
+                    <a class="navbar-brand" href="#">NextGen-Cars</a>
+                    <img src="images/logo-car.png" alt="" width="30" height="24" class="d-inline-block align-top">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" href="calculator.html">Quote</a>
+                        </li>
+                       
+                        
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form>
+                    </div>
+                </div>
+                </nav>
+            
+            <div class="sidebar d-flex flex-column">
+            <br>
+            <select class="form-select btn-outline-primary" aria-label="Default select example" id="Type">
+                <option selected>Car Type</option>
+                <option value="1">Sedan</option>
+                <option value="2">SUV</option>
+                <option value="3">Truck</option>
+            </select>
+            
+            <select class="form-select btn-outline-primary" aria-label="Default select example" id="Model">
+            <option selected>Car Model</option>
+            <option value="1">2017</option>
+            <option value="2">2018</option>
+            <option value="3">2019</option>
+            
+            </select>
+            
+            <select class="form-select btn-outline-primary" aria-label="Default select example" id="Mileage">
+            <option selected>Mileage</option>
+            <option value="1">Less than 20,000</option>
+            <option value="2">Less than 50,000</option>
+            <option value="3">Less than 100,000</option>
+            </select>
+            
+            <select class="form-select btn-outline-primary" aria-label="Default select example" id="Color">
+            <option selected>Car Color</option>
+            <option value="1">Red</option>
+            <option value="2">Blue</option>
+            <option value="3">Black</option>
+            <option value="4">White</option>
+            </select>
+
+            <select class="form-select btn-outline-primary" aria-label="Default select example" id="Transmission">
+            <option selected>Transmission</option>
+            <option value="1">Auto</option>
+            <option value="2">Manual</option>
+            </select>
+            <a href="#" class="btn btn-primary" id="SubmitQuote">Submit</a>
+            </div>
+            <br>
+            <!--First Row-->
+            
+           
+            <div class="container" id="shift">
+            <div class="row d-inline-flex" >
+                <div class="col">
+            
+
+                <div class="gallery" >
+                <a target="_blank" href="images/sedan-white.jpg"  >
+                    <img src="images/sedan-white.jpg" alt="Forest" width="600" height="400" >
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BtnWhiteSedan">White Sedan</a>
+                </div>
+                
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/sedan-red.jpg">
+                    <img src="images/sedan-red.jpg" alt="Northern Lights" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BtnRedSedan">Red Sedan</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/pickup-black.jpg">
+                    <img src="images/pickup-black.jpg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BlackPickup">Black Pickup</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/suv-blue.jpg">
+                    <img src="images/suv-blue.jpg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BlueSuv">Blue SUV</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/pickup-white.jpeg">
+                    <img src="images/pickup-white.jpeg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="WhitePickup">White Pickup</a>
+                </div>
+                </div>
+                </div>
+
+                </div>
+                </div>
+
+             
+
+            <!--Second Row-->
+
+            <div class="container" id="shift">
+            <div class="row d-inline-flex" >
+                <div class="col">
+            
+
+                <div class="gallery">
+                <a target="_blank" href="images/sedan-white.jpg">
+                    <img src="images/sedan-white.jpg" alt="Forest" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BtnWhiteSedan2">White Sedan</a>
+                </div>
+                
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/sedan-red.jpg">
+                    <img src="images/sedan-red.jpg" alt="Northern Lights" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BtnRedSedan2">Red Sedan</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/pickup-black.jpg">
+                    <img src="images/pickup-black.jpg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BlackPickup2">Black Pickup</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/suv-blue.jpg">
+                    <img src="images/suv-blue.jpg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="BlueSuv2">Blue SUV</a>
+                </div>
+                </div>
+                </div>
+
+                <div class="col">
+                <div class="gallery">
+                <a target="_blank" href="images/pickup-white.jpeg">
+                    <img src="images/pickup-white.jpeg" alt="Mountains" width="600" height="400">
+                </a>
+                <div class="desc">
+                <a href="#" class="btn btn-outline-primary" id="WhitePickup2">White Pickup</a>
+                </div>
+                </div>
+                </div>
+
+                </div>
+                </div>
+
+            <div id="WhiteSedan1" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <p class="text-center">
+                        Model: Toyota<br>
+                        Mileage: 28,000 km <br>
+                        Transmission: Auto<br>
+                        Cost: $10,000
+                    </p>
+                </div>
+            
+            </div>
+
+            <div id="RedSedan1" class="modal">
+                <div class="modal-content">
+                    <span class="close" >&times;</span>
+                    <p class="text-center">
+                        Model: Mazda<br>
+                        Mileage: 35,000 km <br>
+                        Transmission: Auto<br>
+                        Cost: $15,000
+                        Year: 2015
+                    </p>
+                </div>
+            
+            </div>
+
+            <div id="BlackPickup1" class="modal">
+                <div class="modal-content">
+                    <span class="close" >&times;</span>
+                    <p class="text-center">
+                        Model: Dodge<br>
+                        Mileage: 12,000 km <br>
+                        Transmission: Auto<br>
+                        Cost: $25,000
+                        Year: 2016
+                    </p>
+                </div>
+            
+            </div>
+
+            <div id="BlueSuv1" class="modal">
+                <div class="modal-content">
+                    <span class="close" >&times;</span>
+                    <p class="text-center">
+                        Model: Seat<br>
+                        Mileage: 18,000 km <br>
+                        Transmission: Auto<br>
+                        Cost: $28,000
+                        Year: 2017
+                    </p>
+                </div>
+            
+            </div>
+
+            <div id="WhitePickup1" class="modal">
+                <div class="modal-content">
+                    <span class="close" >&times;</span>
+                    <p class="text-center">
+                        Model: Ford<br>
+                        Mileage: 22,000 km <br>
+                        Transmission: Auto<br>
+                        Cost: $32,000
+                        Year: 2018
+                    </p>
+                </div>
+            
+            </div>
+
+            <div id="QuoteDiv" class="modal">
+                <div class="modal-content " id="QuoteModal">
+                    <span class="close" >&times;</span>
+                    <p class="text-center">
+                        
+                    </p>
+                </div>
+            
+            </div>
+
+           
+
+            
+
+           <script src="scripts.js"></script>
+
+            
+
+    </body>
+
+</html>
